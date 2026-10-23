@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f0">
+  <title>Northstar | Student learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="auth-screen" id="auth-screen" hidden>
+    <section class="auth-art" aria-label="Northstar Learning">
+      <a class="brand auth-brand" href="#" aria-label="Northstar home"><span class="brand-mark">N</span><span>northstar<span class="brand-dot">.</span></span></a>
+      <div class="auth-art-copy"><span class="hero-kicker">A PLACE TO MOVE FORWARD</span><h1>Make room<br>for what’s next.</h1><p>One learning space for curious minds and the people who guide them.</p></div>
+      <div class="auth-orbit auth-orbit-a"></div><div class="auth-orbit auth-orbit-b"></div><span class="auth-art-star">✳</span>
+      <span class="auth-art-footer">LEARN WITH INTENTION · GROW WITH CONFIDENCE</span>
+    </section>
+    <section class="auth-main">
+      <div class="auth-mobile-brand"><span class="brand-mark">N</span><span>northstar<span class="brand-dot">.</span></span></div>
+      <div class="auth-card">
+        <div class="auth-tabs" role="tablist" aria-label="Account access">
+          <button class="auth-tab active" type="button" role="tab" aria-selected="true" data-auth-tab="login">Sign in</button>
+          <button class="auth-tab" type="button" role="tab" aria-selected="false" data-auth-tab="register">Create account</button>
+        </div>
+        <p class="eyebrow auth-eyebrow" id="auth-eyebrow">WELCOME BACK</p>
+        <h2 id="auth-title">Good to see you.</h2>
+        <p class="auth-subtitle" id="auth-subtitle">Sign in to pick up where you left off.</p>
+        <form id="auth-form" class="auth-form">
+          <div class="register-only" hidden><label for="auth-name">Your name</label><input id="auth-name" name="name" autocomplete="name" placeholder="Jamie Davis" maxlength="80"></div>
+          <label for="auth-email">Email address</label><input id="auth-email" name="email" type="email" autocomplete="email" placeholder="you@school.edu" required maxlength="254">
+          <label for="auth-password">Password</label><input id="auth-password" name="password" type="password" autocomplete="current-password" placeholder="At least 8 characters" required minlength="8">
+          <div class="register-only role-field" hidden><label for="auth-role">I’m joining as</label><select id="auth-role" name="role"><option value="student">Student</option><option value="lecturer">Lecturer / school admin</option></select></div>
+          <p class="auth-error" id="auth-error" role="alert" hidden></p>
+          <button class="auth-submit" type="submit" id="auth-submit">Sign in <span>→</span></button>
+        </form>
+        <p class="auth-footnote">Your learning space, all in one place.</p>
+      </div>
+      <span class="auth-legal">NORTHSTAR LEARNING · 2026</span>
+    </section>
+  </main>
+  <div class="app-shell" hidden>
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Northstar home">
+        <span class="brand-mark" aria-hidden="true">N</span>
+        <span>northstar<span class="brand-dot">.</span></span>
+      </a>
+
+      <div class="nav-label">LEARNING SPACE</div>
+      <nav class="primary-nav" id="student-nav">
+        <a class="nav-item active" href="#home" data-view="home"><span class="nav-icon">⌂</span>Overview</a>
+        <a class="nav-item" href="#courses" data-view="courses"><span class="nav-icon">▤</span>My courses <span class="nav-count">4</span></a>
+        <a class="nav-item" href="#schedule" data-view="schedule"><span class="nav-icon">▦</span>Schedule</a>
+        <a class="nav-item" href="#assignments" data-view="assignments"><span class="nav-icon">✓</span>Assignments <span class="nav-count warm">3</span></a>
+        <a class="nav-item" href="#resources" data-view="resources"><span class="nav-icon">▧</span>Resources</a>
+      </nav>
+      <nav class="primary-nav admin-nav" id="admin-nav" hidden>
+        <a class="nav-item active" href="#admin-dashboard"><span class="nav-icon">▦</span>School overview</a>
+        <a class="nav-item" href="#admin-course-form"><span class="nav-icon">▤</span>Manage courses</a>
+        <a class="nav-item" href="#admin-assignment-form"><span class="nav-icon">✓</span>Assignments</a>
+        <a class="nav-item" href="#admin-class-form"><span class="nav-icon">◷</span>Online classes</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-spark">✳</div>
+          <strong>Need a hand?</strong>
+          <p>Your learning advisor is one message away.</p>
+          <button class="text-button" data-toast="Message sent to your learning advisor">Contact advisor <span>↗</span></button>
+        </div>
+        <button class="profile-button" type="button" data-open-profile aria-label="Open profile">
+          <span class="avatar avatar-small" id="profile-avatar">JD</span>
+          <span class="profile-copy"><strong id="profile-name">Student</strong><small id="profile-role">Learner</small></span>
+          <span class="profile-more">···</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content" id="home">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Learning space</span><span class="crumb-divider">/</span><strong id="page-label">Overview</strong></div>
+        <div class="topbar-actions">
+          <label class="search-box" aria-label="Search courses and resources">
+            <span class="search-icon">⌕</span>
+            <input id="course-search" type="search" placeholder="Search anything..." autocomplete="off">
+            <kbd>⌘ K</kbd>
+          </label>
+          <button class="icon-button notification-button" aria-label="Notifications" data-toast="You’re all caught up">
+            <span>♧</span><i></i>
+          </button>
+          <button class="account-button" type="button" data-open-profile aria-label="Open profile">
+            <span class="signed-in-name" id="signed-in-name"></span>
+            <span class="avatar avatar-top" id="top-avatar">JD</span>
+          </button>
+          <button class="signout-button" id="signout-button" type="button">Sign out</button>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <div id="student-dashboard">
+        <section class="welcome-row">
+          <div>
+            <p class="eyebrow"><span class="sun-mark">✳</span> <span id="today-label">FRIDAY, OCTOBER 23, 2026</span></p>
+            <h1>Good morning, <span id="student-name">Jamie</span><span class="period">.</span></h1>
+            <p class="welcome-subtitle">A little progress each day adds up to big results.</p>
+          </div>
+          <div class="week-pill"><span class="week-dot"></span> Week 7 of 12 <span class="pill-divider"></span> Fall semester</div>
+        </section>
+
+        <section class="hero-panel" aria-label="Weekly learning progress">
+          <div class="hero-copy">
+            <span class="hero-kicker">YOUR WEEK AT A GLANCE</span>
+            <h2>You’re finding<br>your rhythm.</h2>
+            <p>You’ve completed 6 of 8 study hours this week. Keep the momentum going.</p>
+            <a class="hero-link" href="#schedule" data-view="schedule">View your study plan <span>↗</span></a>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="progress-ring"><div><strong>75<span>%</span></strong><small>WEEKLY GOAL</small></div></div>
+            <span class="art-star star-one">✳</span><span class="art-star star-two">✦</span>
+            <div class="hero-note"><span class="note-icon">↗</span><span><strong>+12%</strong><small>vs last week</small></span></div>
+          </div>
+          <div class="hero-index">01 <span></span> 03</div>
+        </section>
+
+        <section class="course-section" id="courses">
+          <div class="section-heading">
+            <div><p class="eyebrow section-eyebrow">PICK UP WHERE YOU LEFT OFF</p><h2>Your courses <span class="heading-count">04</span></h2></div>
+            <button class="quiet-button" id="show-all">View all courses <span>→</span></button>
+          </div>
+          <div class="course-grid" id="course-grid">
+            <article class="course-card" data-course-code="PSY 204" data-search="cognitive psychology mind brain dr lee" tabindex="0" role="button" aria-label="Open Cognitive Psychology">
+              <div class="course-image image-mind"><img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=700&q=85" alt="Colorful abstract gallery installation"><span class="course-tag">PSYCHOLOGY</span><button class="bookmark-button" aria-label="Bookmark Cognitive Psychology" data-toast="Cognitive Psychology saved">♡</button></div>
+              <div class="course-body"><div class="course-meta"><span>PSY 204</span><span>·</span><span>Dr. Lee</span></div><h3>Cognitive Psychology</h3><div class="course-progress-label"><span>Course progress</span><strong>68%</strong></div><div class="progress-track"><span style="width:68%"></span></div><button class="continue-button" data-course="Cognitive Psychology">Continue learning <span>→</span></button></div>
+            </article>
+            <article class="course-card" data-course-code="PSY 210" data-search="research methods statistics data professor chen" tabindex="0" role="button" aria-label="Open Research Methods">
+              <div class="course-image image-research"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=700&q=85" alt="Notebook and research materials on a desk"><span class="course-tag">RESEARCH</span><button class="bookmark-button" aria-label="Bookmark Research Methods" data-toast="Research Methods saved">♡</button></div>
+              <div class="course-body"><div class="course-meta"><span>PSY 210</span><span>·</span><span>Prof. Chen</span></div><h3>Research Methods</h3><div class="course-progress-label"><span>Course progress</span><strong>42%</strong></div><div class="progress-track"><span style="width:42%"></span></div><button class="continue-button" data-course="Research Methods">Continue learning <span>→</span></button></div>
+            </article>
+            <article class="course-card" data-course-code="PSY 230" data-search="social psychology people culture dr patel" tabindex="0" role="button" aria-label="Open Social Psychology">
+              <div class="course-image image-social"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=85" alt="Friends talking together outdoors"><span class="course-tag">PSYCHOLOGY</span><button class="bookmark-button" aria-label="Bookmark Social Psychology" data-toast="Social Psychology saved">♡</button></div>
+              <div class="course-body"><div class="course-meta"><span>PSY 230</span><span>·</span><span>Dr. Patel</span></div><h3>Social Psychology</h3><div class="course-progress-label"><span>Course progress</span><strong>85%</strong></div><div class="progress-track"><span style="width:85%"></span></div><button class="continue-button" data-course="Social Psychology">Continue learning <span>→</span></button></div>
+            </article>
+            <article class="course-card extra-course" data-course-code="PSY 250" data-search="developmental psychology childhood lifespan dr morris" tabindex="0" role="button" aria-label="Open Developmental Psychology">
+              <div class="course-image image-development"><img src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=700&q=85" alt="A child exploring outdoors"><span class="course-tag">PSYCHOLOGY</span><button class="bookmark-button" aria-label="Bookmark Developmental Psychology" data-toast="Developmental Psychology saved">♡</button></div>
+              <div class="course-body"><div class="course-meta"><span>PSY 250</span><span>·</span><span>Dr. Morris</span></div><h3>Developmental Psychology</h3><div class="course-progress-label"><span>Course progress</span><strong>24%</strong></div><div class="progress-track"><span style="width:24%"></span></div><button class="continue-button" data-course="Developmental Psychology">Continue learning <span>→</span></button></div>
+            </article>
+          </div>
+          <p class="empty-search" id="empty-search" hidden>No courses match that search. Try another title or subject.</p>
+        </section>
+
+        <section class="online-classes student-classes" id="schedule">
+          <div class="section-heading">
+            <div><p class="eyebrow section-eyebrow">LEARN TOGETHER, LIVE</p><h2>Online classes <span class="heading-count" id="student-class-count">00</span></h2></div>
+          </div>
+          <div class="class-list" id="student-class-list" aria-live="polite"></div>
+        </section>
+
+        <section class="lower-grid">
+          <div class="assignments-panel" id="assignments">
+            <div class="section-heading compact-heading"><div><p class="eyebrow section-eyebrow">DON’T LET IT SNEAK UP</p><h2>Coming up <span class="heading-count">03</span></h2></div><button class="icon-button small-icon" aria-label="More assignment options" data-toast="Showing all upcoming assignments">···</button></div>
+            <div class="assignment-list">
+              <label class="assignment-row" data-assignment-id="literature-review"><input type="checkbox"><span class="task-check"></span><span class="assignment-info"><strong>Literature review outline</strong><small>Research Methods <span>·</span> Dr. Chen</small></span><span class="due-date due-soon">TOMORROW</span></label>
+              <label class="assignment-row" data-assignment-id="memory-quiz"><input type="checkbox"><span class="task-check"></span><span class="assignment-info"><strong>Memory &amp; attention quiz</strong><small>Cognitive Psychology <span>·</span> Dr. Lee</small></span><span class="due-date">OCT 26</span></label>
+              <label class="assignment-row" data-assignment-id="reflection-journal"><input type="checkbox"><span class="task-check"></span><span class="assignment-info"><strong>Reflection journal · Week 7</strong><small>Social Psychology <span>·</span> Dr. Patel</small></span><span class="due-date">OCT 29</span></label>
+            </div>
+            <button class="assignment-link" data-view="assignments">See all assignments <span>→</span></button>
+          </div>
+          <aside class="streak-panel">
+            <div class="streak-top"><span class="streak-icon">✳</span><span class="streak-label">YOUR STUDY STREAK</span><button class="icon-button small-icon" aria-label="Streak details" data-toast="You’ve studied 4 days in a row">···</button></div>
+            <div class="streak-number">4 <span>days</span></div>
+            <p>You’re building a great habit. One more day beats your best this month.</p>
+            <div class="streak-days"><span class="day done">M<i>✓</i></span><span class="day done">T<i>✓</i></span><span class="day done">W<i>✓</i></span><span class="day done">T<i>✓</i></span><span class="day today">F<i></i></span><span class="day">S<i></i></span><span class="day">S<i></i></span></div>
+          </aside>
+        </section>
+        <footer class="page-footer"><span>© 2026 Northstar Learning</span><a href="#resources" data-view="resources">Help &amp; support</a><span class="footer-status"><i></i> All progress saved</span></footer>
+        </div>
+
+        <section class="course-learning-page" id="course-learning-page" hidden>
+          <button class="course-back" id="course-back" type="button"><span>←</span> Back to courses</button>
+          <header class="learning-heading">
+            <div><p class="eyebrow section-eyebrow" id="learning-course-code">COURSE</p><h1 id="learning-course-title">Course title</h1><p class="welcome-subtitle" id="learning-course-instructor"></p></div>
+            <div class="learning-progress"><span>COURSE PROGRESS</span><strong id="learning-progress-value">0%</strong><div class="progress-track"><span id="learning-progress-bar"></span></div></div>
+          </header>
+          <section class="course-materials" aria-labelledby="course-materials-title">
+            <div class="materials-heading"><div><p class="eyebrow section-eyebrow">SHARED BY YOUR LECTURER</p><h3 id="course-materials-title">Course PDFs</h3></div><span class="panel-count" id="material-count">0 files</span></div>
+            <div class="course-pdf-viewer" id="course-pdf-viewer" hidden>
+              <div class="pdf-viewer-heading"><span class="pdf-file-mark">PDF</span><strong id="course-pdf-name">Course document</strong><a id="course-pdf-download" href="#" download>Download <span>↓</span></a></div>
+              <iframe id="course-pdf-frame" title="Course PDF preview"></iframe>
+            </div>
+            <div class="student-material-list" id="student-material-list"></div>
+          </section>
+          <div class="learning-layout">
+            <nav class="lesson-nav" aria-label="Course lessons"><p class="eyebrow section-eyebrow">COURSE CONTENT</p><div id="lesson-list"></div></nav>
+            <article class="lesson-content">
+              <span class="lesson-kicker" id="lesson-position">LESSON 1</span><h2 id="lesson-title">Course foundations</h2><p id="lesson-description"></p>
+              <div class="lesson-callout"><span>✳</span><div><strong>Make it yours</strong><p>Pause to connect one idea to something you have seen, read, or experienced.</p></div></div>
+              <div class="lesson-actions"><button class="lesson-previous" id="lesson-previous" type="button">← Previous lesson</button><button class="lesson-next" id="lesson-next" type="button">Next lesson →</button><button class="primary-action" id="lesson-complete" type="button">Mark complete <span>✓</span></button></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="admin-dashboard" id="admin-dashboard" hidden>
+          <header class="admin-heading">
+            <div><p class="eyebrow"><span class="sun-mark">✳</span> SCHOOL WORKSPACE</p><h1>Teaching overview<span class="period">.</span></h1><p class="welcome-subtitle">Manage courses and keep assignments moving.</p></div>
+            <span class="admin-role-badge"><i></i> Lecturer / school admin</span>
+          </header>
+
+          <div class="admin-metrics" aria-label="School overview metrics">
+            <article class="metric-tile"><span>ACTIVE COURSES</span><strong id="course-total">—</strong><small>In the learning space</small></article>
+            <article class="metric-tile"><span>ASSIGNMENTS</span><strong id="assignment-total">—</strong><small>Published and upcoming</small></article>
+            <article class="metric-tile"><span>STUDENT COMPLETIONS</span><strong id="completion-total">—</strong><small>Across current assignments</small></article>
+            <article class="metric-tile metric-highlight"><span>TEACHING TERM</span><strong>Week 7</strong><small>Fall semester · 12 weeks</small></article>
+          </div>
+
+          <div class="admin-workspace">
+            <section class="admin-panel" id="admin-course-form">
+              <div class="admin-panel-heading"><div><p class="eyebrow section-eyebrow">COURSE CATALOG</p><h2>Courses</h2></div><span class="panel-count" id="course-panel-count">0 courses</span></div>
+              <form class="admin-form" id="course-form">
+                <label>Course title<input name="title" required maxlength="90" placeholder="e.g. Learning & memory"></label>
+                <div class="form-row"><label>Course code<input name="code" required maxlength="16" placeholder="PSY 260"></label><label>Lecturer<input name="instructor" required maxlength="70" placeholder="Name"></label></div>
+                <button class="primary-action" type="submit"><span>+</span> Add course</button>
+              </form>
+              <div class="admin-list-heading"><span>COURSE</span><span>CODE</span><span>LECTURER</span></div>
+              <div class="admin-record-list" id="admin-course-list" aria-live="polite"></div>
+              <div class="materials-admin">
+                <div class="materials-admin-heading"><div><p class="eyebrow section-eyebrow">COURSE RESOURCES</p><h3>Upload a PDF</h3></div><span class="panel-count">PDF · Up to 15 MB</span></div>
+                <form class="admin-form material-form" id="material-form">
+                  <label>Course<select name="course_code" id="material-course" required><option value="">Choose a course</option></select></label>
+                  <label>PDF file<input name="file" type="file" accept="application/pdf,.pdf" required></label>
+                  <button class="primary-action" type="submit"><span>↑</span> Upload PDF</button>
+                  <p class="form-feedback" id="material-feedback" role="status" hidden></p>
+                </form>
+                <div class="material-admin-list" id="admin-material-list" aria-live="polite"></div>
+              </div>
+            </section>
+
+            <section class="admin-panel" id="admin-assignment-form">
+              <div class="admin-panel-heading"><div><p class="eyebrow section-eyebrow">STUDENT WORK</p><h2>Assignments</h2></div><span class="panel-count" id="assignment-panel-count">0 items</span></div>
+              <form class="admin-form" id="assignment-form">
+                <label>Assignment title<input name="title" required maxlength="100" placeholder="e.g. Chapter 4 reflection"></label>
+                <div class="form-row"><label>Course<input name="course" required maxlength="90" placeholder="Course name"></label><label>Lecturer<input name="instructor" required maxlength="70" placeholder="Name"></label></div>
+                <div class="form-row"><label>Due date<input name="due" type="date" required></label><span class="form-help">New work appears in the student dashboard.</span></div>
+                <button class="primary-action" type="submit"><span>+</span> Publish assignment</button>
+              </form>
+              <div class="admin-list-heading assignment-list-heading"><span>ASSIGNMENT</span><span>COURSE</span><span>DUE</span><span>STATUS</span></div>
+              <div class="admin-record-list" id="admin-assignment-list" aria-live="polite"></div>
+            </section>
+          </div>
+          <section class="admin-panel class-admin-panel" id="admin-class-form">
+            <div class="admin-panel-heading"><div><p class="eyebrow section-eyebrow">LIVE TEACHING</p><h2>Online classes</h2></div><span class="panel-count" id="class-panel-count">0 sessions</span></div>
+            <form class="admin-form class-form" id="class-form">
+              <label>Class title<input name="title" required maxlength="100" placeholder="e.g. Memory and learning seminar"></label>
+              <div class="form-row"><label>Course<select name="course" id="class-course" required><option value="">Choose a course</option></select></label><label>Start date and time<input name="starts_at" type="datetime-local" required></label></div>
+              <label>Online meeting link<input name="meeting_url" type="url" required maxlength="500" placeholder="https://meet.example.com/your-room"></label>
+              <button class="primary-action" type="submit"><span>+</span> Schedule online class</button>
+            </form>
+            <div class="class-list" id="admin-class-list" aria-live="polite"></div>
+          </section>
+          <footer class="admin-footer"><span>Changes are shared with the student dashboard.</span><span class="footer-status"><i></i> Connected to local portal</span></footer>
+        </section>
+
+        <section class="profile-page" id="profile-page" hidden>
+          <button class="profile-back" id="profile-back" type="button"><span>←</span> Back to dashboard</button>
+          <header class="profile-heading">
+            <span class="avatar profile-avatar-large" id="profile-page-avatar">JD</span>
+            <div><p class="eyebrow section-eyebrow">YOUR ACCOUNT</p><h1 id="profile-page-name">Profile</h1><p class="welcome-subtitle">Your Northstar learning account.</p></div>
+          </header>
+          <section class="profile-details" aria-labelledby="profile-details-title">
+            <div class="profile-details-title"><div><p class="eyebrow section-eyebrow">ACCOUNT DETAILS</p><h2 id="profile-details-title">Personal information</h2></div><span class="profile-status"><i></i> Account active</span></div>
+            <dl class="profile-fields">
+              <div><dt>Full name</dt><dd id="profile-page-fullname">—</dd></div>
+              <div><dt>Email address</dt><dd id="profile-page-email">—</dd></div>
+              <div><dt>Account type</dt><dd id="profile-page-role">—</dd></div>
+            </dl>
+          </section>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
